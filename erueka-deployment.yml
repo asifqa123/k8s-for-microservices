@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka-deployment
+  labels:
+    app: eureka-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: eureka-app
+  template:
+    metadata:
+      labels:
+        app: eureka-app
+    spec:
+      imagePullSecrets:
+        - name: my-new-secret
+      containers:
+      - name: eureka
+        image: sarfarazengglb/webpush-microservices-image-repo:eureka-service-v0.0.1
+        ports:
+        - containerPort: 8761

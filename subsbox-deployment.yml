@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subsbox-deployment
+  labels:
+    app: subsbox-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subsbox-app
+  template:
+    metadata:
+      labels:
+        app: subsbox-app
+    spec:
+      imagePullSecrets:
+        - name: my-new-secret
+      containers:
+      - name: subsbox
+        image: sarfarazengglb/webpush-microservices-image-repo:subscription-service-v0.0.1
+        ports:
+        - containerPort: 8085

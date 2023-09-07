@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-deployment
+  labels:
+    app: config-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-app
+  template:
+    metadata:
+      labels:
+        app: config-app
+    spec:
+      imagePullSecrets:
+        - name: my-new-secret
+      containers:
+      - name: config
+        image: sarfarazengglb/webpush-microservices-image-repo:config-service-v0.0.1
+        ports:
+          - containerPort: 8888

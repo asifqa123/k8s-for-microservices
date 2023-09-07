@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: subsbox-svc
+  labels:
+    app: subsbox-app
+spec:
+  ports:
+  - port: 8085
+    targetPort: 8085
+  selector:
+    app: subsbox-app
